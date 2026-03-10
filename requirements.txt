@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+langchain
+langchain-community
+chromadb
+faiss-cpu
+sentence-transformers
+pydantic
+python-dotenv
+tqdm
+numpy
+pandas
+scikit-learn
+openai
+transformers
+torch
