@@ -22,6 +22,7 @@ faiss_index/
 *.safetensors
 
 # Logs
+logs/
 *.log
 
 # Jupyter

@@ -1,12 +1,23 @@
-from langchain_community.vectorstores import Chroma
+import logging
+from langchain_chroma import Chroma
 from .embeddings import get_embedding_model
 
+logger = logging.getLogger(__name__)
+
+_vector_db = None
+
+
 def get_vector_store():
-    embedding = get_embedding_model()
+    global _vector_db
 
-    vector_db = Chroma(
-        persist_directory="backend/data/chroma_db",
-        embedding_function=embedding
-    )
+    if _vector_db is None:
+        logger.info("Initializing Chroma vector store")
 
-    return vector_db
+        embedding = get_embedding_model()
+
+        _vector_db = Chroma(
+            persist_directory="backend/data/chroma_db",
+            embedding_function=embedding
+        )
+
+    return _vector_db
