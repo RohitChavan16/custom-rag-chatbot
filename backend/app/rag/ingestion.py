@@ -6,7 +6,6 @@ from .vector_store import get_vector_store
 
 logger = logging.getLogger(__name__)
 
-
 def ingest_documents(file_path: str):
 
     try:
