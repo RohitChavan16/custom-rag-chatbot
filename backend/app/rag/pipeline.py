@@ -1,7 +1,9 @@
-import ollama
 import logging
+import os
 import time
 from typing import Dict, List
+
+import ollama
 
 from .vector_store import get_vector_store
 
@@ -9,6 +11,47 @@ logger = logging.getLogger(__name__)
 
 # Load vector DB once (not per request)
 vector_db = get_vector_store()
+DEFAULT_MODEL = os.getenv("OLLAMA_MODEL", "mistral")
+ENABLE_CPU_FALLBACK = os.getenv("OLLAMA_CPU_FALLBACK", "true").lower() == "true"
+
+
+class GenerationError(RuntimeError):
+    pass
+
+
+def _generate_with_ollama(prompt: str) -> str:
+    try:
+        response = ollama.chat(
+            model=DEFAULT_MODEL,
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+        )
+        return response["message"]["content"]
+    except Exception as exc:
+        error_text = str(exc)
+
+        if ENABLE_CPU_FALLBACK and "CUDA error" in error_text:
+            logger.warning(
+                "Ollama GPU inference failed; retrying on CPU fallback for model '%s'",
+                DEFAULT_MODEL
+            )
+            response = ollama.chat(
+                model=DEFAULT_MODEL,
+                messages=[
+                    {"role": "user", "content": prompt}
+                ],
+                options={"num_gpu": 0},
+            )
+            return response["message"]["content"]
+
+        if "CUDA error" in error_text:
+            raise GenerationError(
+                "The local Ollama model crashed on GPU inference. "
+                "Try restarting Ollama, switching to CPU mode, or using a smaller model."
+            ) from exc
+
+        raise GenerationError(f"Ollama request failed: {error_text}") from exc
 
 
 def ask_question(query: str) -> Dict:
@@ -55,14 +98,7 @@ Answer:
         # Step 3: Call LLM
         logger.info("Sending request to Ollama model")
 
-        response = ollama.chat(
-            model="mistral",
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
-        )
-
-        answer = response["message"]["content"]
+        answer = _generate_with_ollama(prompt)
 
         latency = round(time.time() - start_time, 2)
 
@@ -74,7 +110,9 @@ Answer:
             "latency": latency
         }
 
+    except GenerationError:
+        raise
     except Exception as e:
         logger.error(f"RAG pipeline error: {str(e)}")
 
-        raise RuntimeError("Failed to generate answer")
+        raise GenerationError("Failed to generate answer") from e

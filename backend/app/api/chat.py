@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 import logging
 from typing import List
-from app.rag.pipeline import ask_question
+from app.rag.pipeline import GenerationError, ask_question
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -29,6 +29,14 @@ async def chat(query: Query):
         logger.info("Response generated successfully")
 
         return result
+
+    except GenerationError as e:
+        logger.exception("RAG pipeline failed")
+
+        raise HTTPException(
+            status_code=503,
+            detail=str(e)
+        )
 
     except Exception as e:
         logger.exception("RAG pipeline failed")
