@@ -8,3 +8,11 @@ export interface ChatResponse {
   sources: string[];
   latency: number;
 }
+
+export interface ChatSession {
+  id: string;
+  title: string;
+  preview: string;
+  updatedAt: string;
+  messages: ChatMessage[];
+}

@@ -18,10 +18,28 @@ export const useChat = () => {
     }
   };
 
+  const replaceMessages = (nextMessages: ChatMessage[]) => {
+    stopTimer();
+    setMessages(nextMessages);
+    setLoading(false);
+    setResponseTime(0);
+    setFinalResponseTime(null);
+  };
+
+  const clearMessages = () => {
+    replaceMessages([]);
+  };
+
   const sendMessage = async (question: string) => {
+    const normalizedQuestion = question.trim();
+
+    if (!normalizedQuestion || loading) {
+      return;
+    }
+
     const userMessage: ChatMessage = {
       role: "user",
-      text: question
+      text: normalizedQuestion
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -36,7 +54,7 @@ export const useChat = () => {
     }, 100);
 
     try {
-      const res = await askQuestion(question);
+      const res = await askQuestion(normalizedQuestion);
 
       stopTimer();
       setResponseTime(res.durationMs);
@@ -73,6 +91,8 @@ export const useChat = () => {
     sendMessage,
     loading,
     responseTime,
-    finalResponseTime
+    finalResponseTime,
+    replaceMessages,
+    clearMessages
   };
 };
