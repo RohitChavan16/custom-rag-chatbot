@@ -14,7 +14,7 @@ const ChatHeader = ({ activeTitle, loading, responseTime, onToggleSidebar }: Pro
         <button
           type="button"
           onClick={onToggleSidebar}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-200 transition hover:border-cyan-400/40 hover:bg-white/10 lg:hidden"
+          className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-200 transition hover:border-cyan-400/40 hover:bg-white/10 lg:hidden"
           aria-label="Toggle sidebar"
         >
           <span className="flex flex-col gap-1">

@@ -112,7 +112,7 @@ const AuthPage = ({ onAuthenticate }: Props) => {
                   setMode(value);
                   setError("");
                 }}
-                className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium capitalize transition ${
+                className={`flex-1 cursor-pointer rounded-xl px-4 py-3 text-sm font-medium capitalize transition ${
                   mode === value
                     ? "bg-cyan-400 text-slate-950"
                     : "text-slate-300 hover:bg-white/5"
@@ -135,7 +135,7 @@ const AuthPage = ({ onAuthenticate }: Props) => {
           <button
             type="button"
             onClick={handleGoogleAuth}
-            className="mt-6 flex w-full items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.01] hover:shadow-xl hover:shadow-white/10"
+            className="mt-6 flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.01] hover:shadow-xl hover:shadow-white/10"
           >
             <span className="text-lg">G</span>
             Continue with Google
@@ -203,7 +203,7 @@ const AuthPage = ({ onAuthenticate }: Props) => {
 
             <button
               type="submit"
-              className="w-full rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:translate-y-[-1px] hover:bg-cyan-300"
+              className="w-full cursor-pointer rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:translate-y-[-1px] hover:bg-cyan-300"
             >
               {mode === "login" ? "Login" : "Register"}
             </button>

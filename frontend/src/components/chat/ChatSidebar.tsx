@@ -38,7 +38,7 @@ const ChatSidebar = ({
   return (
     <>
       <div
-        className={`fixed inset-0 z-30 bg-slate-950/60 backdrop-blur-sm transition lg:hidden ${
+        className={`fixed inset-0 z-30 cursor-pointer bg-slate-950/60 backdrop-blur-sm transition lg:hidden ${
           isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={onClose}
@@ -61,7 +61,7 @@ const ChatSidebar = ({
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-300 transition hover:bg-white/10 lg:hidden"
+            className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-300 transition hover:bg-white/10 lg:hidden"
             aria-label="Close sidebar"
           >
             x
@@ -71,7 +71,7 @@ const ChatSidebar = ({
         <button
           type="button"
           onClick={onNewChat}
-          className="mb-5 rounded-2xl border border-cyan-400/30 bg-cyan-400/12 px-4 py-3 text-left text-sm font-medium text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-400/20"
+          className="mb-5 cursor-pointer rounded-2xl border border-cyan-400/30 bg-cyan-400/12 px-4 py-3 text-left text-sm font-medium text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-400/20"
         >
           New chat
         </button>
@@ -91,7 +91,7 @@ const ChatSidebar = ({
                     key={session.id}
                     type="button"
                     onClick={() => onSelectSession(session.id)}
-                    className={`w-full rounded-2xl border px-3 py-3 text-left transition ${
+                    className={`w-full cursor-pointer rounded-2xl border px-3 py-3 text-left transition ${
                       isActive
                         ? "border-cyan-400/50 bg-cyan-400/12 shadow-[0_0_0_1px_rgba(34,211,238,0.08)]"
                         : "border-white/8 bg-white/[0.03] hover:border-white/15 hover:bg-white/[0.06]"
@@ -123,7 +123,7 @@ const ChatSidebar = ({
             <button
               type="button"
               onClick={onLogout}
-              className="text-sm font-medium text-rose-200 transition hover:text-rose-100"
+              className="cursor-pointer text-sm font-medium text-rose-200 transition hover:text-rose-100"
             >
               Log out
             </button>
