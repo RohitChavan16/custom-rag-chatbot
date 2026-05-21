@@ -8,18 +8,29 @@ html {
   box-sizing: border-box;
 }
 
+html,
 body,
 #root {
-  min-height: 100vh;
+  height: 100%;
 }
 
 body {
   margin: 0;
+  overflow: hidden;
   background:
     radial-gradient(circle at top, rgba(8, 145, 178, 0.18), transparent 28%),
     linear-gradient(180deg, #020617 0%, #0f172a 100%);
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 .chat-send-button-shimmer {

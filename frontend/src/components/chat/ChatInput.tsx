@@ -61,7 +61,7 @@ const ChatInput = ({ onSend, loading }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-white/10 bg-slate-950/90 px-4 pb-5 pt-4 backdrop-blur xl:px-6">
+    <form onSubmit={handleSubmit} className="shrink-0 border-t border-white/10 bg-slate-950/90 px-4 pb-5 pt-4 backdrop-blur xl:px-6">
       <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-3 shadow-[0_20px_60px_rgba(2,6,23,0.4)]">
         <textarea
           rows={1}
@@ -82,7 +82,7 @@ const ChatInput = ({ onSend, loading }: Props) => {
           }}
         />
 
-        <div className="mt-3 flex flex-col gap-3 border-t border-white/8 px-2 pt-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-3 flex gap-3 border-t border-white/8 px-2 pt-3 sm:flex-row sm:items-center sm:justify-between">
           <div className={`text-xs ${error || isOverLimit ? "text-rose-300" : "text-slate-400"}`}>
             {helperText}
           </div>
@@ -97,7 +97,7 @@ const ChatInput = ({ onSend, loading }: Props) => {
               disabled={isDisabled}
               aria-disabled={isDisabled}
               aria-busy={loading}
-              className={`relative overflow-hidden rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
+              className={`relative cursor-pointer overflow-hidden rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
                 loading
                   ? "cursor-not-allowed bg-slate-600/90 text-white shadow-[0_0_0_1px_rgba(148,163,184,0.2)]"
                   : isDisabled

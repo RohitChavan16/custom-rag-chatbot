@@ -73,7 +73,7 @@ def ask_question(query: str) -> Dict:
         context = "\n\n".join([doc.page_content for doc in docs])
 
         sources = [
-            doc.metadata.get("source", "unknown")
+            doc.metadata.get("  source", "unknown")
             for doc in docs
         ]
 

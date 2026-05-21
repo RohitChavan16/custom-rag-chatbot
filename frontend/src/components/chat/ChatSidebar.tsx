@@ -46,7 +46,7 @@ const ChatSidebar = ({
       />
 
       <aside
-        className={`chat-sidebar fixed inset-y-0 left-0 z-40 flex w-[19rem] flex-col border-r border-white/10 bg-slate-950/95 px-4 py-4 backdrop-blur-xl transition-transform duration-300 lg:static lg:z-0 lg:translate-x-0 ${
+        className={`chat-sidebar fixed inset-y-0 left-0 z-40 flex h-dvh w-[19rem] flex-col overflow-hidden border-r border-white/10 bg-slate-950/95 px-4 py-4 backdrop-blur-xl transition-transform duration-300 lg:static lg:z-0 lg:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -76,7 +76,7 @@ const ChatSidebar = ({
           New chat
         </button>
 
-        <div className="flex-1 overflow-y-auto pr-1">
+        <div className="scrollbar-none min-h-0 flex-1 overflow-y-auto pr-1">
           <div className="mb-3 text-xs font-medium uppercase tracking-[0.28em] text-slate-500">
             Recent sessions
           </div>

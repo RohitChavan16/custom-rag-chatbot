@@ -14,7 +14,7 @@ const ChatWindow = ({ messages }: Props) => {
   }, [messages]);
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 py-6 xl:px-6">
+    <div className="min-h-0 flex-1 overflow-y-auto px-4 py-6 xl:px-6">
       {messages.length === 0 ? (
         <div className="mx-auto mt-10 max-w-3xl rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 text-white shadow-[0_25px_80px_rgba(2,6,23,0.32)]">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">Start here</p>

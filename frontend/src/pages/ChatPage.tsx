@@ -116,7 +116,7 @@ const ChatPage = ({ user, onLogout }: Props) => {
   };
 
   return (
-    <div className="chat-app-shell flex min-h-screen bg-slate-950 text-white">
+    <div className="chat-app-shell flex h-dvh overflow-hidden bg-slate-950 text-white">
       <ChatSidebar
         activeSessionId={activeSessionId}
         isOpen={isSidebarOpen}
@@ -128,7 +128,7 @@ const ChatPage = ({ user, onLogout }: Props) => {
         onSelectSession={handleSelectSession}
       />
 
-      <div className="flex min-h-screen min-w-0 flex-1 flex-col">
+      <div className="flex h-dvh min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
         <ChatHeader
           activeTitle={activeSessionTitle}
           loading={loading}
